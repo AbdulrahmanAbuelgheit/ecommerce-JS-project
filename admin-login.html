@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Admin Login</title>
+    <!-- Bootstrap CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="css/style.css" />
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+      rel="stylesheet"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
+
+    <style>
+      body {
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        background-color: #f0f4f8;
+        color: #333;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+      }
+
+      .login-containerr {
+        background: #fff;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        border-radius: 8px;
+        padding: 40px;
+        width: 100%;
+        max-width: 400px;
+      }
+
+      .login-header {
+        text-align: center;
+        margin-bottom: 30px;
+      }
+
+      .text-danger {
+        text-align: center;
+        margin-top: 15px;
+        font-size: 0.875rem;
+      }
+
+      @media (max-width: 576px) {
+        .login-container {
+          padding: 25px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="login-containerr">
+      <div class="login-header">
+        <h3>Admin Login</h3>
+      </div>
+
+      <form id="login-form">
+        <div class="mb-3">
+          <label for="email" class="form-label">Email</label>
+          <input
+            type="email"
+            class="form-control"
+            id="email"
+            placeholder="Enter your email"
+            required
+          />
+        </div>
+        <div class="mb-3">
+          <label for="password" class="form-label">Password</label>
+          <input
+            type="password"
+            class="form-control"
+            id="password"
+            placeholder="Enter your password"
+            required
+          />
+        </div>
+        <p id="error-message" class="text-danger d-none"></p>
+        <button type="submit" class="btn btn-primary w-100">Login</button>
+      </form>
+    </div>
+
+    <script>
+      const admin = JSON.parse(localStorage.getItem("admin")) || {};
+      $("#login-form").on("submit", function (event) {
+        event.preventDefault();
+        const email = $("#email").val().trim();
+        const password = $("#password").val().trim();
+        if (!email || !password) {
+          showError("Please enter both email and password.");
+          return;
+        }
+
+        const foundAdmin = admin.email === email;
+        if (!foundAdmin) {
+          showError("Invalid email or password.");
+          return;
+        }
+
+        const hashedInputPassword = CryptoJS.SHA256(
+          password + admin.salt
+        ).toString();
+        if (admin.password !== hashedInputPassword) {
+          showError("Invalid email or password.");
+          return;
+        }
+
+        sessionStorage.setItem("loggedInUser", JSON.stringify(admin));
+        window.location.href = "./admin dashboard/index.html";
+      });
+
+      const showError = (message) => {
+        $("#error-message")
+          .removeClass("d-none")
+          .text(message)
+          .fadeIn()
+          .delay(5000)
+          .fadeOut();
+      };
+    </script>
+  </body>
+</html>

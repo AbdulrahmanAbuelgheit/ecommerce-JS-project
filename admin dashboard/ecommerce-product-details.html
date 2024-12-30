@@ -1,0 +1,263 @@
+<!doctype html>
+<html lang="en" data-bs-theme="blue-theme">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Maxton | Bootstrap 5 Admin Dashboard Template</title>
+  <!--favicon-->
+	<link rel="icon" href="assets/images/favicon-32x32.png" type="image/png">
+  <!-- loader-->
+	<link href="assets/css/pace.min.css" rel="stylesheet">
+	<script src="assets/js/pace.min.js"></script>
+
+  <!--plugins-->
+  <link href="assets/plugins/perfect-scrollbar/css/perfect-scrollbar.css" rel="stylesheet">
+  <link rel="stylesheet" type="text/css" href="assets/plugins/metismenu/metisMenu.min.css">
+  <link rel="stylesheet" type="text/css" href="assets/plugins/metismenu/mm-vertical.css">
+  <link rel="stylesheet" type="text/css" href="assets/plugins/simplebar/css/simplebar.css">
+  <!--bootstrap css-->
+  <link href="assets/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Material+Icons+Outlined" rel="stylesheet">
+  <!--main css-->
+  <link href="assets/css/bootstrap-extended.css" rel="stylesheet">
+  <link href="sass/main.css" rel="stylesheet">
+  <!-- <link href="sass/dark-theme.css" rel="stylesheet">
+  <link href="sass/blue-theme.css" rel="stylesheet">
+  <link href="sass/semi-dark.css" rel="stylesheet"> -->
+  <link href="sass/bordered-theme.css" rel="stylesheet">
+  <link href="sass/responsive.css" rel="stylesheet">
+
+</head>
+<script
+type="text/javascript"
+src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"
+></script>
+
+<script type="text/javascript">
+(function () {
+  emailjs.init({
+    publicKey: "UXTylgeMX-WvJKLQL",
+  });
+})();
+</script>
+<body>
+
+<!--start header-->
+<header class="top-header">
+  <nav class="navbar navbar-expand align-items-center gap-4">
+    <div class="btn-toggle">
+      <a href="javascript:;"><i class="material-icons-outlined">menu</i></a>
+    </div>
+
+    <div class="collapse navbar-collapse" id="navbarsFurni">
+      <ul class="custom-navbar-cta navbar-nav mb-2 mb-md-0 ms-5">
+        <li class="nav-item dropdown">
+          <p id="username" class="fw-bold fs-5"></p>
+          <a
+            class="nav-link dropdown-toggle"
+            href="#"
+            id="userDropdown"
+            role="button"
+            data-bs-toggle="dropdown"
+            aria-expanded="false"
+          >
+            <img src="../../images/user.svg" />
+          </a>
+          <ul
+            class="dropdown-menu dropdown-menu-end"
+            aria-labelledby="userDropdown"
+          >
+            <li id="profile-item" class="d-none">
+              <a class="dropdown-item" href="index.html">Profile</a>
+            </li>
+            <li id="logout-item" class="d-none">
+              <a
+                class="dropdown-item"
+                href="../customer/html/index.html"
+                id="logout-button"
+                >Logout</a
+              >
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+  </nav>
+</header>
+<!--end top header-->
+
+<!--start sidebar-->
+<aside class="sidebar-wrapper" data-simplebar="true">
+  <div class="sidebar-header">
+    <div class="logo-icon">
+      <img src="assets/images/logo-icon.png" class="logo-img" alt="" />
+    </div>
+    <div class="logo-name flex-grow-1">
+      <h5 class="mb-0">furn</h5>
+    </div>
+    <div class="sidebar-close">
+      <span class="material-icons-outlined">close</span>
+    </div>
+  </div>
+  <div class="sidebar-nav">
+    <!--navigation-->
+    <ul class="metismenu" id="sidenav">
+      <li>
+        <a href="javascript:;" class="has-arrow">
+          <div class="parent-icon">
+            <i class="material-icons-outlined">home</i>
+          </div>
+          <div class="menu-title">Dashboard</div>
+        </a>
+        <ul>
+          <li>
+            <a href="index.html"
+              ><i class="material-icons-outlined">arrow_right</i>Analysis</a
+            >
+          </li>
+
+          <li>
+            <a href="ecommerce-customers.html"
+              ><i class="material-icons-outlined">arrow_right</i
+              >Customers</a
+            >
+          </li>
+          <li>
+            <a href="ecommerce-sellers.html"
+              ><i class="material-icons-outlined">arrow_right</i>Sellers</a
+            >
+          </li>
+          <li>
+            <a href="ecommerce-orders.html"
+              ><i class="material-icons-outlined">arrow_right</i>Orders</a
+            >
+          </li>
+          <li>
+            <a href="ecommerce-products.html"
+              ><i class="material-icons-outlined">arrow_right</i>Products</a
+            >
+          </li>
+        </ul>
+      </li>
+    </ul>
+    <!--end navigation-->
+  </div>
+</aside>
+<!--end sidebar-->
+
+  <!--start main wrapper-->
+ <!--start main wrapper-->
+ <main class="main-wrapper">
+  <div class="main-content">
+    <!--breadcrumb-->
+    <div class="page-breadcrumb d-none d-sm-flex align-items-center mb-3">
+      <div class="breadcrumb-title pe-3">Components</div>
+      <div class="ps-3">
+        <nav aria-label="breadcrumb">
+          <ol class="breadcrumb mb-0 p-0">
+            <li class="breadcrumb-item">
+              <a href="javascript:;"><i class="bx bx-home-alt"></i></a>
+            </li>
+            <li class="breadcrumb-item active" aria-current="page">
+              Order Details
+            </li>
+          </ol>
+        </nav>
+      </div>
+    </div>
+    <!--end breadcrumb-->
+
+    <div class="card">
+      <div class="card-body">
+        <div
+          class="d-flex flex-lg-row flex-column align-items-start align-items-lg-center justify-content-between gap-3"
+        >
+          <div class="flex-grow-1">
+            <h4 id="product-number" class="fw-bold">Product #</h4>
+            <!-- <p class="mb-0">
+              Customer ID: <span id="customer-id">Customer ID</span>
+            </p> -->
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+<!-- Product Table Section -->
+<div class="col-12 col-lg-12 d-flex">
+<div class="card w-100">
+<div class="card-body d-flex flex-column" style="min-height: 400px;">
+  <div class="product-table flex-grow-1">
+    <div class="table-responsive white-space-nowrap">
+      <table class="table align-middle">
+        <thead class="table-light col-lg-12">
+          <tr>
+            <th>Product Name</th>
+            <th>Category</th>
+            <th>Quantity</th>
+            <th>Price</th>
+            <th>Sold</th>
+            <th>Color</th>
+            <th>Seller ID</th>
+            <th>Seller Name </th>
+
+          </tr>
+        </thead>
+        <tbody id="product-table-body">
+          <!-- Dynamically populated rows will appear here -->
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div id="pagination-controls" class="mt-4 text-center">
+    <!-- Pagination controls will appear here -->
+  </div>
+</div>
+</div>
+</div>
+
+
+    
+
+      
+
+    
+    
+        <!--end row-->
+      </div>
+    </div>
+  </div>
+  <div id="confirmdelete" class="popup">
+    <div class="popup-content">
+        <h4>ِthis product will delete from your database</h4>
+        <button id="ok" class="btn btn-secondary">OK</button>
+    </div>
+</div>
+</main>
+<!--end main wrapper-->
+
+<!--start footer-->
+<footer class="page-footer">
+  <p class="mb-0">Copyright © 2024. All right reserved.</p>
+</footer>
+<!--top footer-->
+
+
+
+  <!--bootstrap js-->
+  <script src="assets/js/bootstrap.bundle.min.js"></script>
+
+  <!--plugins-->
+  <script src="assets/js/jquery.min.js"></script>
+  <!--plugins-->
+  <script src="assets/plugins/perfect-scrollbar/js/perfect-scrollbar.js"></script>
+  <script src="assets/plugins/metismenu/metisMenu.min.js"></script>
+  <script src="assets/plugins/simplebar/js/simplebar.min.js"></script>
+  <script src="assets/js/main.js"></script>
+  <script src="Productdetails.js"></script>
+
+</body>
+
+</html>

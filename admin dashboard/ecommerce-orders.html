@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="blue-theme">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Furn Admin Dashboard</title>
+    <!--favicon-->
+    <link rel="icon" href="assets/images/favicon-32x32.png" type="image/png" />
+    <!-- loader-->
+    <link href="assets/css/pace.min.css" rel="stylesheet" />
+    <script src="assets/js/pace.min.js"></script>
+
+    <!--plugins-->
+    <link
+      href="assets/plugins/perfect-scrollbar/css/perfect-scrollbar.css"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="assets/plugins/metismenu/metisMenu.min.css"
+    />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="assets/plugins/metismenu/mm-vertical.css"
+    />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="assets/plugins/simplebar/css/simplebar.css"
+    />
+    <!--bootstrap css-->
+    <link href="assets/css/bootstrap.min.css" rel="stylesheet" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@300;400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css?family=Material+Icons+Outlined"
+      rel="stylesheet"
+    />
+    <!--main css-->
+    <link href="assets/css/bootstrap-extended.css" rel="stylesheet" />
+    <link href="sass/main.css" rel="stylesheet" />
+    <link href="sass/bordered-theme.css" rel="stylesheet" />
+    <link href="sass/responsive.css" rel="stylesheet" />
+    <style>
+      .form-control:focus {
+        outline: none;
+        border: 1px solid black !important;
+        box-shadow: none;
+      }
+
+      .clickable-row:hover {
+        background-color: #f8f9fa !important;
+      }
+
+      .table th,
+      .table td {
+        vertical-align: middle;
+        text-align: center;
+      }
+      .card-body {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between; 
+        min-height: 100%; 
+      }
+
+      .customer-table {
+        flex-grow: 1;
+        overflow-y: auto; 
+      }
+
+      #pagination-controls {
+        margin-top: 20px; 
+      }
+      .delete-btn {
+        cursor: pointer;
+        color: white;
+        background-color: red;
+        border: none;
+        padding: 5px 10px;
+        border-radius: 5px;
+      }
+      .delete-btn:hover {
+        background-color: darkred;
+      }
+    </style>
+  </head>
+
+  <body>
+    <!--start header-->
+    <header class="top-header">
+      <nav class="navbar navbar-expand align-items-center gap-4">
+        <div class="btn-toggle">
+          <a href="javascript:;"><i class="material-icons-outlined">menu</i></a>
+        </div>
+      </nav>
+    </header>
+    <!--end top header-->
+
+    <!--start sidebar-->
+    <aside class="sidebar-wrapper" data-simplebar="true">
+      <div class="sidebar-header">
+        <div class="logo-icon">
+          <img src="assets/images/logo-icon.png" class="logo-img" alt="" />
+        </div>
+        <div class="logo-name flex-grow-1">
+          <h5 class="mb-0">furn</h5>
+        </div>
+        <div class="sidebar-close">
+          <span class="material-icons-outlined">close</span>
+        </div>
+      </div>
+      <div class="sidebar-nav">
+        <!--navigation-->
+        <ul class="metismenu" id="sidenav">
+          <li>
+            <a href="javascript:;" class="has-arrow">
+              <div class="parent-icon">
+                <i class="material-icons-outlined">home</i>
+              </div>
+              <div class="menu-title">Dashboard</div>
+            </a>
+            <ul>
+              <li>
+                <a href="index.html"
+                  ><i class="material-icons-outlined">arrow_right</i>Analysis</a
+                >
+              </li>
+
+              <li>
+                <a href="ecommerce-customers.html"
+                  ><i class="material-icons-outlined">arrow_right</i>
+                  Customers</a
+                >
+              </li>
+              <li>
+                <a href="ecommerce-sellers.html"
+                  ><i class="material-icons-outlined">arrow_right</i>Sellers</a
+                >
+              </li>
+              <li>
+                <a href="ecommerce-orders.html"
+                  ><i class="material-icons-outlined">arrow_right</i>Orders</a
+                >
+              </li>
+              <li>
+                <a href="ecommerce-products.html"
+                  ><i class="material-icons-outlined">arrow_right</i>Products</a
+                >
+              </li>
+            </ul>
+          </li>
+        </ul>
+        <!--end navigation-->
+      </div>
+    </aside>
+    <!--end sidebar-->
+    <!--start main wrapper-->
+    <main class="main-wrapper">
+      <div class="main-content">
+        <!--breadcrumb-->
+        <div class="page-breadcrumb d-none d-sm-flex align-items-center mb-3">
+          <div class="breadcrumb-title pe-3">Components</div>
+          <div class="ps-3">
+            <nav aria-label="breadcrumb">
+              <ol class="breadcrumb mb-0 p-0">
+                <li class="breadcrumb-item">
+                  <a href="javascript:;"><i class="bx bx-home-alt"></i></a>
+                </li>
+                <li class="breadcrumb-item active" aria-current="page">
+                  Orders
+                </li>
+              </ol>
+            </nav>
+          </div>
+        </div>
+        <!--end breadcrumb-->
+
+        <div class="row g-3">
+          <div class="col-auto">
+            <div class="position-relative">
+              <input
+                class="form-control px-5"
+                type="search"
+                placeholder="Search Customers"
+              />
+              <span
+                class="material-icons-outlined position-absolute ms-3 translate-middle-y start-0 top-50 fs-5"
+                >search</span
+              >
+            </div>
+          </div>
+        </div>
+
+        <!--end row-->
+
+        <div class="card mt-4">
+          <div class="card-body d-flex flex-column" style="min-height: 400px">
+            <div class="customer-table flex-grow-1">
+              <div class="table-responsive white-space-nowrap">
+                <table class="table align-middle">
+                  <thead class="table-light">
+                    <tr>
+                      <th>Order Id</th>
+                      <th>Price</th>
+                      <th>Customer</th>
+                      <th>Status</th>
+                      <th>Payment Type</th>
+                      <th>Date</th>
+                      <th>Actions</th>
+                    </tr>
+                  </thead>
+                  <tbody id="customer-table-body">
+                    <!-- Dynamically populated rows will appear here -->
+                  </tbody>
+                </table>
+              </div>
+            </div>
+            <div id="pagination-controls" class="mt-4 text-center">
+              <!-- Pagination controls will appear here -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+    <!--end main wrapper-->
+
+    <!--bootstrap js-->
+    <script src="assets/js/bootstrap.bundle.min.js"></script>
+
+    <!--plugins-->
+    <script src="assets/js/jquery.min.js"></script>
+    <!--plugins-->
+    <script src="assets/plugins/perfect-scrollbar/js/perfect-scrollbar.js"></script>
+    <script src="assets/plugins/metismenu/metisMenu.min.js"></script>
+    <script src="assets/plugins/simplebar/js/simplebar.min.js"></script>
+    <!-- <script src="assets/js/main.js"></script> -->
+    <script src="closeFun.js"></script>
+
+    <script>
+      const storedOrders = JSON.parse(localStorage.getItem("orders")) || [];
+      const storedProducts = JSON.parse(localStorage.getItem("products")) || [];
+      const customers = JSON.parse(localStorage.getItem("customers")) || [];
+      const getCustomerNameById = (userId) => {
+        const customer = customers.find((customer) => customer.id === userId);
+        return customer ? customer.username : "Unknown Customer";
+      };
+
+      function generateOrdersTable(
+        page = 1,
+        rowsPerPage = 5,
+        searchQuery = ""
+      ) {
+        const ordersTableBody = document.querySelector("tbody");
+
+        ordersTableBody.innerHTML = "";
+
+        const filteredOrders = storedOrders.filter((order) => {
+          const customerName = getCustomerNameById(order.user_id);
+          return customerName.toLowerCase().includes(searchQuery.toLowerCase());
+        });
+
+        const startIndex = (page - 1) * rowsPerPage;
+        const endIndex = startIndex + rowsPerPage;
+        const paginatedOrders = filteredOrders.slice(startIndex, endIndex);
+
+        paginatedOrders.forEach((order) => {
+          const customerName = order.customerDetails["Name"];
+          const formattedDate = new Date(order.time).toLocaleDateString();
+          const row = document.createElement("tr");
+          row.classList.add("clickable-row");
+          row.style.cursor = "pointer";
+
+          row.addEventListener("click", (event) => {
+            if (!event.target.classList.contains("delete-btn")) {
+              window.location.href = `ecommerce-order-details.html?order_id=${order.order_id}`;
+            }
+          });
+
+          const isPending = order.status.toLowerCase() === "pending";
+          row.innerHTML = `
+      <td>#${order.order_id}</td>
+      <td>$${order.totalPrice.toFixed(2)}</td>
+      <td>
+        <img src="assets/images/avatars/image.PNG" class="rounded-circle" width="40" height="40" alt="" />
+        <span class="mb-0 customer-name fw-bold">${customerName}</span>
+      </td>
+      <td>
+        <span class="lable-table bg-primary-subtle text-primary rounded border border-warning-subtle font-text2 fw-bold">
+          ${order.status}
+        </span>
+      </td>
+      <td>${order.payment_type}</td>
+      <td>${formattedDate}</td>
+      <td>
+        ${
+          isPending
+            ? `<button class="btn btn-danger btn-sm delete-btn" onclick="deleteOrder(${order.order_id})">Delete</button>`
+            : ""
+        }
+      </td>
+    `;
+
+          ordersTableBody.appendChild(row);
+        });
+
+        renderPaginationControls(
+          filteredOrders.length,
+          page,
+          rowsPerPage,
+          searchQuery
+        );
+      }
+
+      function deleteOrder(orderId) {
+        const confirmDelete = confirm(
+          "Are you sure you want to cancel this order?"
+        );
+        if (!confirmDelete) return;
+        const orderIndex = storedOrders.findIndex(
+          (order) => order.order_id === orderId
+        );
+        if (orderIndex !== -1) {
+          storedOrders.splice(orderIndex, 1);
+          localStorage.setItem("orders", JSON.stringify(storedOrders));
+
+          generateOrdersTable();
+        }
+      }
+
+      // Function to render pagination controls
+      function renderPaginationControls(
+        totalOrders,
+        currentPage,
+        rowsPerPage,
+        searchQuery = ""
+      ) {
+        const paginationContainer = document.getElementById(
+          "pagination-controls"
+        );
+        if (!paginationContainer) {
+          console.error("Pagination container not found!");
+          return;
+        }
+
+        const totalPages = Math.ceil(totalOrders / rowsPerPage);
+
+        paginationContainer.innerHTML = "";
+
+        for (let i = 1; i <= totalPages; i++) {
+          const pageButton = document.createElement("button");
+          pageButton.textContent = i;
+          pageButton.className = `btn btn-sm ${
+            i === currentPage ? "btn-primary" : "btn-light"
+          } mx-1`;
+
+          pageButton.onclick = () =>
+            generateOrdersTable(i, rowsPerPage, searchQuery);
+          paginationContainer.appendChild(pageButton);
+        }
+      }
+
+      // Search functionality
+      document
+        .querySelector('input[type="search"]')
+        .addEventListener("input", (event) => {
+          const searchQuery = event.target.value;
+          generateOrdersTable(1, 5, searchQuery); // Reset to page 1 on search
+        });
+
+      // Call the function to populate the table on page load
+      generateOrdersTable();
+
+      $(document).ready(() => {
+        $(".btn-toggle")
+          .off("click")
+          .on("click", function () {
+            if ($("body").hasClass("toggled")) {
+              $("body").removeClass("toggled");
+              $(".sidebar-wrapper").unbind("hover");
+            } else {
+              $("body").addClass("toggled");
+              $(".sidebar-wrapper").hover(
+                function () {
+                  $("body").addClass("sidebar-hovered");
+                },
+                function () {
+                  $("body").removeClass("sidebar-hovered");
+                }
+              );
+            }
+          });
+      });
+
+
+    </script>
+  </body>
+</html>

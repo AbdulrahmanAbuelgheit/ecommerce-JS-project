@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link href="../css/bootstrap.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <link href="../css/Products.css" rel="stylesheet">
+    <title>Add New Product</title>
+</head>
+
+<body>
+    <div class="container mt-5">
+        <h2 id="formTitle">Add New Product</h2>
+        <form id="addProductForm">
+            <div class="mb-3">
+                <label for="productTitle" class="form-label">Product Title</label>
+                <input type="text" class="form-control" id="productTitle" required>
+            </div>
+            <div class="mb-3">
+                <label for="productDescription" class="form-label">Product Description</label>
+                <input type="text" class="form-control" id="productDescription" required>
+            </div>
+            <div class="mb-3">
+                <label for="productCategory" class="form-label">Category</label>
+                <select class="form-control" id="productCategory" required>
+                    <option value="chairs">Chairs</option>
+                    <option value="tables">Tables</option>
+                    <option value="sofas">Sofas</option>
+                    <option value="lights">Lights</option>
+                    <option value="accessories">Accessories</option>
+                </select>
+            </div>
+            <div class="mb-3">
+                <label for="productImage" class="form-label">Product Image URL</label>
+                <input type="text" class="form-control" id="productImage" required>
+            </div>
+            <div class="mb-3">
+                <label for="productPrice" class="form-label">Price</label>
+                <input type="number" class="form-control" id="productPrice" required>
+            </div>
+            <div class="mb-3">
+                <label for="productColor" class="form-label">Color</label>
+                <input type="text" class="form-control" id="productColor" required>
+            </div>
+            <div class="mb-3">
+                <label for="productQuantity" class="form-label">Quantity</label>
+                <input type="number" class="form-control" id="productQuantity" required>
+            </div>
+            <button type="submit" class="btn btn-success" id="submitBtn">Add Product</button>
+        </form>
+    </div>
+    <div id="NotValidImg" class="popup">
+        <div class="popup-content">
+            <h4>Please enter a valid image URL ending with .png, .jpg, or .jpeg !</h4>
+            <button id="ok" class="btn btn-secondary">OK</button>
+        </div>
+    </div>
+    <script src="../js/newProduct.js"></script>
+</body>
+
+</html>

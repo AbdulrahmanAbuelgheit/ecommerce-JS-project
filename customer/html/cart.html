@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Shopping Cart</title>
+    <!-- Bootstrap CSS -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link href="../css/bootstrap.css" rel="stylesheet" />
+    <link
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    rel="stylesheet"
+  />
+  <link rel="stylesheet" href="../css/cartStyle.css"/>
+  </head>
+  <body>
+    <!-- Navbar -->
+    <nav
+      class="custom-navbar navbar navbar-expand-md navbar-dark bg-dark"
+      arial-label="Furni navigation bar"
+    >
+      <div class="container">
+        <a class="navbar-brand" href="index.html">Furni<span>.</span></a>
+
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarsFurni"
+          aria-controls="navbarsFurni"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarsFurni">
+          <ul class="custom-navbar-nav navbar-nav ms-auto mb-2 mb-md-0">
+            <li class="nav-item">
+              <a class="nav-link" href="index.html">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="Products.html">Shop</a>
+            </li>
+            
+          </ul>
+
+          <ul class="custom-navbar-cta navbar-nav mb-2 mb-md-0 ms-5">
+            <li class="nav-item dropdown">
+              <a
+                class="nav-link dropdown-toggle"
+                href="#"
+                id="userDropdown"
+                role="button"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+              >
+                <img src="../images/user.svg" />
+              </a>
+              <ul
+                class="dropdown-menu dropdown-menu-end"
+                aria-labelledby="userDropdown"
+              >
+                <li id="login-item">
+                  <a class="dropdown-item" href="../../login.html">Login</a>
+                </li>
+                <li id="signup-item">
+                  <a class="dropdown-item" href="../../signup.html">Sign Up</a>
+                </li>
+                <li id="profile-item" class="d-none">
+                  <a class="dropdown-item" href="customer-dashboard.html"
+                    >Profile</a
+                  >
+                </li>
+                <li id="logout-item" class="d-none">
+                  <a class="dropdown-item" href="index.html" id="logout-button"
+                    >Logout</a
+                  >
+                </li>
+              </ul>
+            </li>
+
+            <li class="nav-item position-relative">
+              <a class="nav-link" href="cart.html">
+                <img src="../images/cart.svg" alt="Cart" />
+                <span
+                  id="cartCounter"
+                  class="cart-counter bg-danger text-white"
+                ></span>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <div class="container py-5">
+      <h2 class="text-center mb-4">Shopping Cart</h2>
+
+      <div class="row justify-content-center">
+        <!-- Cart Table -->
+        <div class="col-12" id="cart-table">
+          <div class="table-responsive">
+            <table class="table mb-5">
+              <thead>
+                <tr>
+                  <th>Image</th>
+                  <th>Product</th>
+                  <th>Price</th>
+                  <th>Quantity</th>
+                  <th>Total</th>
+                  <th>Remove</th>
+                </tr>
+              </thead>
+              <tbody id="cart-items">
+                <!-- Items will be dynamically loaded -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- Cart Empty Message -->
+        <div class="col-12" id="cart-empty" style="display: none;">
+          <div class="cart-empty">
+            <i class="fas fa-shopping-cart fa-3x mb-3"></i>
+            <h4>Your cart is currently empty.</h4>
+            <p>Start adding items to your cart to see them here.</p>
+            <a href="Products.html" class="btn btn-dark mt-3">Go to Shop</a>
+          </div>
+        </div>
+
+        <!-- Cart Actions -->
+        <div class="row" id="cart-actions">
+          <div class="col-md-6">
+            <div class="row mb-5">
+              <div class="col-md-12">
+                <button class="btn btn-dark" onclick="window.location='Products.html'">Continue Shopping</button>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-md-12">
+                <label class="text-black h4" for="coupon">Coupon</label>
+                <p>Enter your coupon code if you have one.</p>
+              </div>
+              <div class="col-md-8 mb-3 mb-md-0">
+                <input type="text" class="form-control py-3" id="coupon" placeholder="Coupon Code" />
+              </div>
+              <div class="col-md-4">
+                <button class="btn btn-dark ms-2 mb-5">Apply Coupon</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Cart Totals -->
+          <div class="col-md-6 pl-5 cart-totals" id="cart-totals">
+            <div class="row justify-content-end">
+              <div class="col-md-7">
+                <div class="row">
+                  <div class="col-md-12 text-right border-bottom mb-5">
+                    <h3 class="text-black h4 text-uppercase">Cart Totals</h3>
+                  </div>
+                </div>
+                <div class="row mb-3">
+                  <div class="col-md-6">
+                    <span class="text-black">Subtotal</span>
+                  </div>
+                  <div class="col-md-6 text-right">
+                    <strong class="text-black" id="subtotal">$0.00</strong>
+                  </div>
+                </div>
+                <div class="row mb-5">
+                  <div class="col-md-6">
+                    <span class="text-black">Total</span>
+                  </div>
+                  <div class="col-md-6 text-right">
+                    <strong class="text-black" id="total">$0.00</strong>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="col-md-12">
+                    <button class="btn btn-dark w-100 mt-4"  onclick="proceedToCheckout()">
+                      Proceed To Checkout
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Bootstrap Modal -->
+<div class="modal fade" id="alertModal" tabindex="-1" aria-labelledby="alertModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="alertModalLabel">Cart Update</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body" id="alertModalBody">
+        <!-- Messages will be dynamically inserted here -->
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-bs-dismiss="modal">OK</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="../js/counter.js"></script>
+<script  src="../js/cartScript.js"></script>
+    <script>
+
+
+$(document).ready(() => {
+  let currentuser = JSON.parse(sessionStorage.getItem("loggedInUser"));
+  let user;
+  const storedProducts = JSON.parse(localStorage.getItem("products")) || [];
+
+
+  if (!currentuser) user = "guest";
+  else user = currentuser.id;
+
+  let cartData = JSON.parse(localStorage.getItem("cart")) || {};
+  const cartKey = `cart_${user}`;
+
+  if (!cartData[cartKey]) {
+  cartData[cartKey] = [];
+  localStorage.setItem("cart", JSON.stringify(cartData));
+}
+
+if (cartData["cart_guest"]) {
+  if (user !== "guest") {
+    cartData["cart_guest"].forEach((guestItem) => {
+      const existingItemIndex = cartData[cartKey].findIndex((cartItem) => cartItem.id === guestItem.id);
+      const storedProduct = storedProducts.find((product) => product.id === guestItem.id);
+      
+      if (storedProduct) {
+        if (existingItemIndex !== -1) {
+          const existingItem = cartData[cartKey][existingItemIndex];
+          existingItem.quantity = Math.min(
+            existingItem.quantity + guestItem.quantity,
+            storedProduct.count
+          );
+        } else {
+          guestItem.quantity = Math.min(guestItem.quantity, storedProduct.count);
+          cartData[cartKey].push(guestItem);
+        }
+      }
+    });
+
+    delete cartData["cart_guest"];
+    localStorage.setItem("cart", JSON.stringify(cartData));
+    CartManager.updateCartCounter();
+  }
+}
+
+  let alertMessages = []; 
+  const initializedCart = cartData[cartKey]
+    .map((item) => {
+      const product = storedProducts.find((p) => p.id === item.id);
+      if (product) {
+        if (product.count === 0) {
+          alertMessages.push(`"${product.title}" is out of stock and has been removed from your cart.`);
+          return null; 
+        }
+        if (item.quantity > product.count) {
+          alertMessages.push(`The quantity of "${product.title}" was adjusted to ${product.count} due to stock limitations.`);
+        }
+        const quantity = Math.min(item.quantity, product.count);
+        return { ...product, quantity }; 
+      }
+      return null; 
+    })
+    .filter((item) => item !== null); 
+  cartData[cartKey] = initializedCart;
+  localStorage.setItem("cart", JSON.stringify(cartData));
+
+  if (alertMessages.length > 0) {
+    showUpdateModal(alertMessages.join("<br>"),"Cart Update");
+  }
+function showUpdateModal(message, title = "Notification") {
+  const modalBody = document.getElementById("alertModalBody");
+  modalBody.innerHTML = message;
+  const modalTitle = document.getElementById("alertModalLabel");
+  modalTitle.textContent = title;
+  const modal = new bootstrap.Modal(document.getElementById("alertModal"));
+  modal.show();
+}
+
+  renderCart();
+});
+
+</script>
+</body>
+</html>

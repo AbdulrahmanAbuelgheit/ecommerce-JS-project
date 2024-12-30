@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="blue-theme">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Furn Admin Dashboard</title>
+    <!--favicon-->
+    <link rel="icon" href="assets/images/favicon-32x32.png" type="image/png" />
+    <!-- loader-->
+    <link href="assets/css/pace.min.css" rel="stylesheet" />
+    <script src="assets/js/pace.min.js"></script>
+
+    <!--plugins-->
+    <link
+      href="assets/plugins/perfect-scrollbar/css/perfect-scrollbar.css"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="assets/plugins/metismenu/metisMenu.min.css"
+    />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="assets/plugins/metismenu/mm-vertical.css"
+    />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="assets/plugins/simplebar/css/simplebar.css"
+    />
+    <!--bootstrap css-->
+    <link href="assets/css/bootstrap.min.css" rel="stylesheet" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@300;400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css?family=Material+Icons+Outlined"
+      rel="stylesheet"
+    />
+    <!--main css-->
+    <link href="assets/css/bootstrap-extended.css" rel="stylesheet" />
+    <link href="sass/main.css" rel="stylesheet" />
+    <link href="sass/bordered-theme.css" rel="stylesheet" />
+    <link href="sass/responsive.css" rel="stylesheet" />
+    <style>
+      .table th,
+      .table td {
+        vertical-align: middle;
+        text-align: center;
+      }
+.card-body {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: 100%; 
+  }
+
+  .product-table {
+    flex-grow: 1; 
+    overflow-y: auto; 
+  }
+
+  #pagination-controls {
+    margin-top: 20px; 
+  }
+    </style>
+  </head>
+
+  <body>
+    <!--start header-->
+    <header class="top-header">
+      <nav class="navbar navbar-expand align-items-center gap-4">
+        <div class="btn-toggle">
+          <a href="javascript:;"><i class="material-icons-outlined">menu</i></a>
+        </div>
+      </nav>
+    </header>
+    <!--end top header-->
+
+    <!--start sidebar-->
+    <aside class="sidebar-wrapper" data-simplebar="true">
+      <div class="sidebar-header">
+        <div class="logo-icon">
+          <img src="assets/images/logo-icon.png" class="logo-img" alt="" />
+        </div>
+        <div class="logo-name flex-grow-1">
+          <h5 class="mb-0">furn</h5>
+        </div>
+        <div class="sidebar-close">
+          <span class="material-icons-outlined">close</span>
+        </div>
+      </div>
+      <div class="sidebar-nav">
+        <!--navigation-->
+        <ul class="metismenu" id="sidenav">
+          <li>
+            <a href="javascript:;" class="has-arrow">
+              <div class="parent-icon">
+                <i class="material-icons-outlined">home</i>
+              </div>
+              <div class="menu-title">Dashboard</div>
+            </a>
+            <ul>
+              <li>
+                <a href="index.html"
+                  ><i class="material-icons-outlined">arrow_right</i>Analysis</a
+                >
+              </li>
+
+  
+              <li>
+                <a href="ecommerce-customers.html"
+                  ><i class="material-icons-outlined">arrow_right</i>
+                  Customers</a
+                >
+              </li>
+              <li>
+                <a href="ecommerce-sellers.html"
+                  ><i class="material-icons-outlined">arrow_right</i>Sellers</a
+                >
+              </li>
+              <li>
+                <a href="ecommerce-orders.html"
+                  ><i class="material-icons-outlined">arrow_right</i>Orders</a
+                >
+              </li>
+              <li>
+                <a href="ecommerce-products.html"
+                  ><i class="material-icons-outlined">arrow_right</i>Products</a
+                >
+              </li>
+            </ul>
+          </li>
+        </ul>
+        <!--end navigation-->
+      </div>
+    </aside>
+
+    <!--end sidebar-->
+
+    <!--start main wrapper-->
+    <main class="main-wrapper">
+      <div class="main-content">
+        <!--breadcrumb-->
+        <div class="page-breadcrumb d-none d-sm-flex align-items-center mb-3">
+          <div class="breadcrumb-title pe-3">Components</div>
+          <div class="ps-3">
+            <nav aria-label="breadcrumb">
+              <ol class="breadcrumb mb-0 p-0">
+                <li class="breadcrumb-item">
+                  <a href="javascript:;"><i class="bx bx-home-alt"></i></a>
+                </li>
+                <li class="breadcrumb-item active" aria-current="page">
+                  Order Details
+                </li>
+              </ol>
+            </nav>
+          </div>
+        </div>
+        <!--end breadcrumb-->
+
+        <div class="card">
+          <div class="card-body">
+            <div
+              class="d-flex flex-lg-row flex-column align-items-start align-items-lg-center justify-content-between gap-3"
+            >
+              <div class="flex-grow-1">
+                <h4 id="order-number" class="fw-bold">Order #</h4>
+                <p class="mb-0">
+                  Customer ID: <span id="customer-id">Customer ID</span>
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+<!-- Product Table Section -->
+<div class="col-12 col-lg-8 d-flex">
+  <div class="card w-100">
+    <div class="card-body d-flex flex-column" style="min-height: 400px;">
+      <div class="product-table flex-grow-1">
+        <div class="table-responsive white-space-nowrap">
+          <table class="table align-middle">
+            <thead class="table-light">
+              <tr>
+                <th>Product Name</th>
+                <th>Quantity</th>
+                <th>Price</th>
+                <th>Total</th>
+              </tr>
+            </thead>
+            <tbody id="product-table-body">
+              <!-- Dynamically populated rows will appear here -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div id="pagination-controls" class="mt-4 text-center">
+        <!-- Pagination controls will appear here -->
+      </div>
+    </div>
+  </div>
+</div>
+
+
+        
+
+          <!-- Summary and Order Status Section -->
+          <div class="col-12 col-lg-4 d-flex flex-column gap-3">
+            <!-- Summary Card -->
+            <div class="card w-100">
+              <div class="card-body">
+                <h4 class="card-title mb-4 fw-bold">Summary</h4>
+                <div class="d-flex justify-content-between">
+                  <p class="fw-semi-bold">Subtotal :</p>
+                  <p id="summary-subtotal" class="fw-semi-bold">$0.00</p>
+                </div>
+                <div class="d-flex justify-content-between border-top pt-4">
+                  <h5 class="mb-0 fw-bold">Total :</h5>
+                  <h5 id="summary-total" class="mb-0 fw-bold">$0.00</h5>
+                </div>
+              </div>
+            </div>
+
+            <!-- Order Status Card -->
+            <div class="card w-100">
+              <div class="card-body">
+                <h4 class="card-title mb-4 fw-bold">Order Status</h4>
+
+                <!-- Payment Status -->
+                <label class="form-label">Payment Status</label>
+                <p id="payment-status" class="mb-4 fw-bold"></p>
+
+                <!-- Completed Status -->
+                <label class="form-label">Completed Status</label>
+                <p id="completed-status" class="fw-bold"></p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <h5 class="fw-bold mb-4">Billing Details</h5>
+        <div class="card">
+          <div class="card-body">
+            <div class="row g-3 row-cols-1 row-cols-lg-3">
+              <div class="col">
+                <div class="d-flex align-items-start gap-3 border p-3 rounded">
+                  <div class="detail-icon fs-5">
+                    <i class="bi bi-person-circle"></i>
+                  </div>
+                  <div class="detail-info">
+                    <p class="fw-bold mb-1">Customer Name</p>
+                    <a href="javascript:;" id="customerName" class="mb-0">--</a>
+                  </div>
+                </div>
+              </div>
+        
+              <div class="col">
+                <div class="d-flex align-items-start gap-3 border p-3 rounded">
+                  <div class="detail-icon fs-5">
+                    <i class="bi bi-envelope-fill"></i>
+                  </div>
+                  <div class="detail-info">
+                    <h6 class="fw-bold mb-1">Email</h6>
+                    <a href="mailto:" id="email" class="mb-0">--</a>
+                  </div>
+                </div>
+              </div>
+        
+              <div class="col">
+                <div class="d-flex align-items-start gap-3 border p-3 rounded">
+                  <div class="detail-icon fs-5">
+                    <i class="bi bi-telephone-fill"></i>
+                  </div>
+                  <div class="detail-info">
+                    <h6 class="fw-bold mb-1">Phone</h6>
+                    <a href="tel:" id="phone" class="mb-0">--</a>
+                  </div>
+                </div>
+              </div>
+        
+              <div class="col">
+                <div class="d-flex align-items-start gap-3 border p-3 rounded">
+                  <div class="detail-icon fs-5">
+                    <i class="bi bi-calendar-check-fill"></i>
+                  </div>
+                  <div class="detail-info">
+                    <h6 class="fw-bold mb-1">Date of Order</h6>
+                    <p id="orderDate" class="mb-0">--</p>
+                  </div>
+                </div>
+              </div>
+        
+              <div class="col">
+                <div class="d-flex align-items-start gap-3 border p-3 rounded">
+                  <div class="detail-icon fs-5">
+                    <i class="bi bi-house-door-fill"></i>
+                  </div>
+                  <div class="detail-info">
+                    <h6 class="fw-bold mb-1">Address</h6>
+                    <p id="address" class="mb-0">--</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+            <!--end row-->
+          </div>
+        </div>
+      </div>
+    </main>
+    <!--end main wrapper-->
+
+    <!--start footer-->
+    <footer class="page-footer">
+      <p class="mb-0">Copyright © 2024. All right reserved.</p>
+    </footer>
+    <!--top footer-->
+
+    <!--bootstrap js-->
+    <script src="assets/js/bootstrap.bundle.min.js"></script>
+
+    <!--plugins-->
+    <script src="assets/js/jquery.min.js"></script>
+    <!--plugins-->
+    <script src="assets/plugins/perfect-scrollbar/js/perfect-scrollbar.js"></script>
+    <script src="assets/plugins/metismenu/metisMenu.min.js"></script>
+    <script src="assets/plugins/simplebar/js/simplebar.min.js"></script>
+   <!--  <script src="assets/js/main.js"></script> -->
+    <script src="closeFun.js"></script>
+
+    <script>
+      $(document).ready(function () {
+
+        $(".btn-toggle").off("click").on("click", function () {
+    if ($("body").hasClass("toggled")) {
+      $("body").removeClass("toggled");
+      $(".sidebar-wrapper").unbind("hover");
+    } else {
+      $("body").addClass("toggled");
+      $(".sidebar-wrapper").hover(
+        function () {
+          $("body").addClass("sidebar-hovered");
+        },
+        function () {
+          $("body").removeClass("sidebar-hovered");
+        }
+      );
+    }
+  });
+
+        const storedOrders = JSON.parse(localStorage.getItem("orders")) || [];
+        const storedProducts =
+          JSON.parse(localStorage.getItem("products")) || [];
+          const storedCustomers = JSON.parse(localStorage.getItem("customers")) || [];
+
+        const params = new URLSearchParams(window.location.search);
+        const orderId = params.get("order_id");
+
+        function generateProductTable(orderId, page = 1, rowsPerPage = 5) {
+  const tableBody = document.getElementById("product-table-body");
+
+  tableBody.innerHTML = ""; 
+  const order = storedOrders.find((order) => order.order_id == orderId);
+
+  if (!order) {
+    window.location.href = "ecommerce-orders.html";
+    return;
+  }
+
+
+  const products = order.products;
+
+  const startIndex = (page - 1) * rowsPerPage;
+  const endIndex = startIndex + rowsPerPage;
+
+
+  const paginatedProducts = products.slice(startIndex, endIndex);
+
+
+  paginatedProducts.forEach((product) => {
+    const total = product.price * (product.quantity || 1);
+
+    const row = `
+      <tr>
+        <td>
+          <div class="d-flex align-items-center gap-3">
+            <div class="product-box">
+              <img src="${
+                product.image || "https://via.placeholder.com/70"
+              }" width="70" class="rounded-3" alt="${product.title}">
+            </div>
+            <div class="product-info">
+              <a href="javascript:;" class="product-title">${product.title}</a>
+              <p class="mb-0 product-category">Category : ${product.category}</p>
+            </div>
+          </div>
+        </td>
+        <td>${product.quantity || 1}</td>
+        <td>$${product.price.toFixed(2)}</td>
+        <td>$${total.toFixed(2)}</td>
+      </tr>
+    `;
+
+    tableBody.innerHTML += row;
+  });
+
+ 
+  renderProductPaginationControls(products.length, page, rowsPerPage, orderId);
+}
+
+function renderProductPaginationControls(
+  totalProducts,
+  currentPage,
+  rowsPerPage,
+  orderId
+) {
+  const paginationContainer = document.getElementById("pagination-controls");
+
+  if (!paginationContainer) {
+    console.error("Pagination container not found!");
+    return;
+  }
+
+  const totalPages = Math.ceil(totalProducts / rowsPerPage);
+
+  paginationContainer.innerHTML = ""; 
+
+  for (let i = 1; i <= totalPages; i++) {
+    const pageButton = document.createElement("button");
+    pageButton.textContent = i;
+    pageButton.className = `btn btn-sm ${
+      i === currentPage ? "btn-primary" : "btn-light"
+    } mx-1`;
+
+   
+    pageButton.onclick = () => generateProductTable(orderId, i, rowsPerPage);
+    paginationContainer.appendChild(pageButton);
+  }
+}
+
+
+generateProductTable(orderId);
+
+
+        // Function to calculate and display Summary for an order
+        function updateOrderSummary(order_Id) {
+          const order = storedOrders.find(
+            (o) => o.order_id === parseInt(orderId)
+          );
+
+          if (!order) {
+            console.error(`Order with ID ${order_Id} not found.`);
+            return;
+          }
+          const subtotal = order.products.reduce((sum, product) => {
+            const productTotal = (product.price || 0) * (product.quantity || 1);
+            return sum + productTotal;
+          }, 0);
+
+          const total = subtotal; 
+          document.getElementById(
+            "summary-subtotal"
+          ).textContent = `$${subtotal.toFixed(2)}`;
+          document.getElementById(
+            "summary-total"
+          ).textContent = `$${total.toFixed(2)}`;
+        }
+
+        updateOrderSummary(orderId); 
+
+        function updateOrderStatus(order_Id) {
+          const order = storedOrders.find(
+            (o) => o.order_id === parseInt(orderId)
+          );
+
+        
+          const paymentStatusLabel = document.getElementById("payment-status");
+          if (paymentStatusLabel) {
+            paymentStatusLabel.textContent = order.payment_type || "Unknown";
+          }
+
+         
+          const completedStatusLabel =
+            document.getElementById("completed-status");
+          if (completedStatusLabel) {
+            completedStatusLabel.textContent = order.status || "Unknown";
+          }
+        }
+        updateOrderStatus(orderId);
+
+
+
+// Function to populate fixed HTML with dynamic data
+function populateCustomerDetails( ) {
+
+  const orderDetails = storedOrders.find(
+          (order) => order.order_id === parseInt(orderId)
+        );
+        // Populate the order details in the HTML
+        document.getElementById(
+          "order-number"
+        ).textContent = `Order #${orderDetails.order_id}`;
+        document.getElementById("customer-id").textContent =
+          orderDetails.user_id || "Unknown Customer";
+  const customerName=orderDetails.customerDetails["Name"];
+  const email = orderDetails.customerDetails["Email"];
+  const phone =  orderDetails.customerDetails["Phone"]; 
+  const address =  orderDetails.customerDetails["Address"]; 
+  const formattedDate = new Date(orderDetails.time).toLocaleDateString();
+  // Populate the HTML elements
+  document.getElementById("customerName").textContent = customerName;
+  document.getElementById("email").textContent = email;
+  document.getElementById("email").href = `mailto:${email}`;
+  document.getElementById("phone").textContent = phone;
+  document.getElementById("phone").href = `tel:${phone}`;
+  document.getElementById("orderDate").textContent = formattedDate;
+  document.getElementById("address").textContent = address;
+}
+
+populateCustomerDetails();
+
+      });
+
+    </script>
+  </body>
+</html>

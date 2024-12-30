@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Profile</title>
+    <link href="css/bootstrap.min.css" rel="stylesheet" />
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+      rel="stylesheet"
+    />
+    <link href="css/style.css" rel="stylesheet" />
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+  </head>
+  <body class="bg-light">
+    <nav
+      class="custom-navbar navbar navbar-expand-md navbar-dark bg-dark"
+      arial-label="Furni navigation bar"
+    >
+      <div class="container">
+        <a class="navbar-brand" href="index.html">Furni<span>.</span></a>
+
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarsFurni"
+          aria-controls="navbarsFurni"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarsFurni">
+          <ul class="custom-navbar-nav navbar-nav ms-auto mb-2 mb-md-0">
+            <li class="nav-item">
+              <a class="nav-link" href="index.html">Home</a>
+            </li>
+            <li><a class="nav-link" href="shop.html">Shop</a></li>
+            <li><a class="nav-link" href="about.html">About us</a></li>
+            <li><a class="nav-link" href="services.html">Services</a></li>
+            <li><a class="nav-link" href="blog.html">Blog</a></li>
+            <li><a class="nav-link" href="contact.html">Contact us</a></li>
+          </ul>
+
+          <ul class="custom-navbar-cta navbar-nav mb-2 mb-md-0 ms-5">
+            <li class="nav-item dropdown">
+              <a
+                class="nav-link dropdown-toggle"
+                href="#"
+                id="userDropdown"
+                role="button"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+              >
+                <img src="images/user.svg" />
+              </a>
+              <ul
+                class="dropdown-menu dropdown-menu-end"
+                aria-labelledby="userDropdown"
+              >
+                <li id="login-item">
+                  <a class="dropdown-item" href="login.html">Login</a>
+                </li>
+                <li id="signup-item">
+                  <a class="dropdown-item" href="signup.html">Sign Up</a>
+                </li>
+                <li id="profile-item" class="d-none">
+                  <a class="dropdown-item" href="customer-dashboard.html"
+                    >Profile</a
+                  >
+                </li>
+                <li id="logout-item" class="d-none">
+                  <a class="dropdown-item" href="#" id="logout-button"
+                    >Logout</a
+                  >
+                </li>
+              </ul>
+            </li>
+
+            <li>
+              <a class="nav-link" href="cart.html"
+                ><img src="images/cart.svg"
+              /></a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <div class="container mt-5">
+      <div class="card mb-4">
+        <div class="card-body">
+          <div class="row align-items-center">
+            <!-- User Avatar -->
+            <div class="col-12 col-md-3 text-center mb-4 mb-md-0">
+              <img
+                id="profile-img"
+                src="https://via.placeholder.com/100"
+                alt="User Avatar"
+                class="user-img rounded-circle"
+                style="width: 150px; height: 150px"
+              />
+            </div>
+
+            <!-- Editable Fields -->
+            <div class="col-12 col-md-6">
+              <div class="row mb-3">
+                <label for="username" class="col-sm-4 col-form-label"
+                  >Username</label
+                >
+                <div class="col-sm-8">
+                  <input
+                    type="text"
+                    id="username"
+                    class="form-control"
+                    value="John Doe"
+                  />
+                </div>
+                <small
+                  id="usernameError"
+                  class="text-danger error-message text-center"
+                ></small>
+              </div>
+              <div class="row mb-3">
+                <label for="email" class="col-sm-4 col-form-label">Email</label>
+                <div class="col-sm-8">
+                  <input
+                    type="email"
+                    id="email"
+                    class="form-control"
+                    value="johndoe@example.com"
+                  />
+                </div>
+                <small
+                  id="emailError"
+                  class="text-danger error-message text-center"
+                ></small>
+              </div>
+              <div class="row mb-3">
+                <label for="role" class="col-sm-4 col-form-label">Role</label>
+                <div class="col-sm-8">
+                  <input
+                    type="text"
+                    id="role"
+                    class="form-control"
+                    value="Customer"
+                    disabled
+                  />
+                </div>
+              </div>
+              <div class="row mb-3">
+                <label for="phoneNumber" class="col-sm-4 col-form-label"
+                  >Phone</label
+                >
+                <div class="col-sm-8">
+                  <input
+                    type="text"
+                    id="phoneNumber"
+                    class="form-control"
+                    value=""
+                  />
+                </div>
+                <small
+                  id="phoneNumberError"
+                  class="text-danger error-message ml-3 text-center"
+                ></small>
+              </div>
+              <div class="row mb-3">
+                <label for="gender" class="col-sm-4 col-form-label"
+                  >Gender</label
+                >
+                <div class="col-sm-8">
+                  <select id="gender" class="form-control">
+                    <option value="Male">Male</option>
+                    <option value="Female">Female</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="row mb-3">
+                <label for="address" class="col-sm-4 col-form-label"
+                  >Address</label
+                >
+                <div class="col-sm-8">
+                  <input
+                    type="text"
+                    id="address"
+                    class="form-control"
+                    value=""
+                  />
+                </div>
+                <small
+                  id="addressError"
+                  class="text-danger error-message text-center"
+                ></small>
+              </div>
+              <div class="row mb-3">
+                <label for="photoSrc" class="col-sm-4 col-form-label"
+                  >Photo Title</label
+                >
+                <div class="col-sm-8">
+                  <input
+                    type="text"
+                    id="photoSrc"
+                    class="form-control"
+                    placeholder="Enter image title"
+                  />
+                </div>
+              </div>
+
+              <div class="row mt-3">
+                <div class="col-12 text-center">
+                  <button class="btn btn-success btn-primary" id="updateBtn">
+                    Update
+                  </button>
+                </div>
+              </div>
+
+              <div
+                id="successMessage"
+                class="text-success text-center mt-3"
+              ></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="orders-section" class="mt-5">
+      <h3 class="text-center mb-3">My Orders</h3>
+      <div id="orders-list" class="container">
+        <p colspan="4" class="text-center text-muted">No orders found.</p>
+      </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="customer-dashboard.js"></script>
+  </body>
+</html>
